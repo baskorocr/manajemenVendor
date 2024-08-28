@@ -186,7 +186,7 @@
                                     Asset</span></a>
                         </li>
                         @if (auth()->user()->is_admin == 1)
-                            <li> <a class="waves-effect waves-dark" href="{{ route('riwayat.index') }}"
+                            <li> <a class="waves-effect waves-dark" href="{{ route('user-manajemen.index') }}"
                                     aria-expanded="false"><i class="fa fa-user-circle-o"></i><span
                                         class="hide-menu">User
                                         Manajemen

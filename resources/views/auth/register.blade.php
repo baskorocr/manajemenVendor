@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css') }}">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 
@@ -98,7 +99,21 @@
                                     <span class="ml-auto"><a href="#" class="forgot-pass">Forgot
                                             Password</a></span>
                                 </div>
-                                <input type="submit" value="Log In" class="btn btn-block btn-primary">
+                                <div class="d-flex mb-5 align-items-center justify-content-center">
+                                    <div class="row w-100">
+                                        <div class="col-6">
+                                            <input type="submit" value="Register"
+                                                class="btn btn-block btn-primary w-100">
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="button" class="btn btn-block btn-danger w-100"
+                                                onclick="window.history.back();">
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                     </div>

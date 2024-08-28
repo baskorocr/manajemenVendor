@@ -11,6 +11,7 @@ use App\Http\Controllers\PemilikController;
 use App\Http\Controllers\AssetsController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\riwayatController;
+use App\Http\Controllers\userManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('assetsPart', AssetsController::class);
     Route::resource('photos', PhotoController::class);
     Route::resource('riwayat', riwayatController::class);
+    Route::resource('user-manajemen', userManagementController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
