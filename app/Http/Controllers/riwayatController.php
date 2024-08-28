@@ -12,7 +12,7 @@ class riwayatController extends Controller
      */
     public function index()
     {
-        $riwayat = Riwayat::all();
+        $riwayat = Riwayat::with('user')->get();
         return view('riwayat.index', compact('riwayat'));
     }
 
@@ -61,6 +61,13 @@ class riwayatController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $riwayat = Riwayat::findOrFail($id);
+
+        // Delete the Riwayat record
+        $riwayat->delete();
+
+        // Redirect back to the index page with a success message
+
+        return redirect()->route('riwayat.index')->with('success', 'Proses berhasil dihapus');
     }
 }

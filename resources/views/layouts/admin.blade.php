@@ -185,6 +185,14 @@
                                 aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Riwayat
                                     Asset</span></a>
                         </li>
+                        @if (auth()->user()->is_admin == 1)
+                            <li> <a class="waves-effect waves-dark" href="{{ route('riwayat.index') }}"
+                                    aria-expanded="false"><i class="fa fa-user-circle-o"></i><span
+                                        class="hide-menu">User
+                                        Manajemen
+                                    </span></a>
+                            </li>
+                        @endif
 
 
 

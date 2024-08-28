@@ -49,7 +49,7 @@
                                         <th>Jumlah (Unit)</th>
 
 
-                                        <th>Spek Mesin (Ton)</th>
+                                        <th>Spek Mesin (t)</th>
                                         <th>Pemilik</th>
 
 
@@ -91,7 +91,7 @@
                                             <!-- Display gambar -->
                                             <td>
                                                 <a href="{{ route('assetsPart.edit', $asset->no_assets) }}"
-                                                    class="btn btn-warning btn-sm">Edit</a>
+                                                    class="btn btn-warning btn-sm">Pindah Asset</a>
                                                 <form action="{{ route('assetsPart.destroy', $asset->no_assets) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf

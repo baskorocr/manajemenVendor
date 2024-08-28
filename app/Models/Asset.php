@@ -9,6 +9,7 @@ class Asset extends Model
 {
     use HasFactory;
     protected $primaryKey = 'no_assets';
+    public $incrementing = false;
 
     protected $fillable = [
         'no_assets',

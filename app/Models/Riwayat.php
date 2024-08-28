@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Riwayat extends Model
 {
     use HasFactory;
-    protected $fillable = ['name_vendor'];
+    protected $fillable = ['no_assets', 'idUser', 'StatusAwal', 'StatusAkhir'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUser');
+    }
 }

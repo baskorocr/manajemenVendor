@@ -38,27 +38,27 @@
                                         <th>ID</th>
                                         <th>no_aseets</th>
                                         <th>idUser</th>
+                                        <th>User Name</th>
                                         <th>statusAwal</th>
                                         <th>statusAkhir</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($riwayat as $rwyt)
                                         <tr>
                                             <td>{{ $rwyt->id }}</td>
-                                            <td>{{ $rwyt->not_assets }}</td>
+                                            <td>{{ $rwyt->no_assets }}</td>
                                             <td>{{ $rwyt->idUser }}</td>
+                                            <td>{{ $rwyt->user->name ?? 'N/A' }}</td>
                                             <td>{{ $rwyt->StatusAwal }}</td>
                                             <td>{{ $rwyt->StatusAkhir }}</td>
                                             <td>
                                                 <!-- Edit Button -->
-                                                <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#editProsesModal{{ $rwyt->id }}">
-                                                    Edit
-                                                </button>
+
 
                                                 <!-- Delete Form -->
-                                                <form action="{{ route('proses.destroy', $rwyt->id) }}" method="POST"
+                                                <form action="{{ route('riwayat.destroy', $rwyt->id) }}" method="POST"
                                                     style="display:inline-block;" class="delete-form">
                                                     @csrf
                                                     @method('DELETE')
@@ -69,40 +69,6 @@
                                         </tr>
 
                                         <!-- Edit Process Modal -->
-                                        <div class="modal fade" id="editProsesModal{{ $rwyt->id }}" tabindex="-1"
-                                            aria-labelledby="editProsesModalLabel{{ $rwyt->id }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="editProsesModalLabel{{ $rwyt->id }}">Edit Process
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ route('proses.update', $rwyt->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <div class="mb-3">
-                                                                <label for="prosesName{{ $rwyt->id }}"
-                                                                    class="form-label">Name Process</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="prosesName{{ $rwyt->id }}" name="proses_name"
-                                                                    value="{{ $rwyt->proses_name }}" required>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-success">Update
-                                                                    Process</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -123,29 +89,7 @@
     <!-- ============================================================== -->
 
     <!-- Add Process Modal -->
-    <div class="modal fade" id="addProsesModal" tabindex="-1" aria-labelledby="addProsesModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addProsesModalLabel">Add New Process</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('proses.store') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="prosesName" class="form-label">Name Process</label>
-                            <input type="text" class="form-control" id="proses_name" name="proses_name" required>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Add Process</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Inline JavaScript for confirmation dialog -->
     <script>

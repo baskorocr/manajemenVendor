@@ -18,70 +18,48 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Edit Asset</h4>
-                        <form action="{{ route('assetsPart.update', $asset->id_assets) }}" method="POST">
+                        <form action="{{ route('assetsPart.update', $asset->no_assets) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="asset_id" value="{{ $asset->id_assets }}">
+                            <input type="hidden" name="no_asset" value="{{ $asset->no_assets }}">
+
                             <div class="mb-3">
                                 <label for="editVendorSelect" class="form-label">Vendor</label>
                                 <select id="editVendorSelect" class="form-select" name="vendor_id" required>
                                     @foreach ($vendors as $vendor)
                                         <option value="{{ $vendor->id }}"
                                             {{ $vendor->id == $asset->vendor_id ? 'selected' : '' }}>
-                                            {{ $vendor->name }}
+                                            {{ $vendor->name_vendor }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="mb-3">
-                                <label for="editProjectSelect" class="form-label">Project</label>
-                                <select id="editProjectSelect" class="form-select" name="project_id" required>
-                                    @foreach ($projects as $project)
-                                        <option value="{{ $project->id }}"
-                                            {{ $project->id == $asset->project_id ? 'selected' : '' }}>
-                                            {{ $project->name_project }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editAssetTypeSelect" class="form-label">Asset Type</label>
-                                <select id="editAssetTypeSelect" class="form-select" name="asset_type_id" required>
-                                    @foreach ($assetTypes as $assetType)
-                                        <option value="{{ $assetType->id }}"
-                                            {{ $assetType->id == $asset->asset_type_id ? 'selected' : '' }}>
-                                            {{ $assetType->name_type }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editProsesSelect" class="form-label">Proses</label>
-                                <select id="editProsesSelect" class="form-select" name="proses_id" required>
-                                    @foreach ($proses as $pr)
-                                        <option value="{{ $pr->id }}"
-                                            {{ $pr->id == $asset->proses_id ? 'selected' : '' }}>
-                                            {{ $pr->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <input type="hidden" readonly name="tempVendorAwal"
+                                value="{{ $vendors->firstWhere('id', $asset->vendor_id)->name_vendor ?? '' }}">
+                            <input type="hidden" id="tempVendorAkhir" class="form-control" readonly name="tempVendorAkhir">
+
+
+
+
                             <div class="mb-3">
                                 <label for="editPemilikSelect" class="form-label">Pemilik</label>
                                 <select id="editPemilikSelect" class="form-select" name="pemilik_id" required>
                                     @foreach ($pemiliks as $pemilik)
                                         <option value="{{ $pemilik->id }}"
-                                            {{ $pemilik->id == $asset->pemilik_id ? 'selected' : '' }}>
-                                            {{ $pemilik->name }}
+                                            {{ $pemilik->id == $asset->pemiliks_id ? 'selected' : '' }}>
+                                            {{ $pemilik->name_pemilik }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="mb-3">
                                 <label for="editJumlahInput" class="form-label">Jumlah</label>
                                 <input type="number" class="form-control" id="editJumlahInput" name="jumlah"
                                     value="{{ $asset->jumlah }}" required>
                             </div>
+
+
                             <button type="submit" class="btn btn-primary">Update Asset</button>
                         </form>
                     </div>
@@ -89,4 +67,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const vendorSelect = document.getElementById('editVendorSelect');
+            const tempVendorInput = document.getElementById('tempVendorAkhir');
+            const originalVendorId = vendorSelect.querySelector('option[selected]').value;
+
+            vendorSelect.addEventListener('change', function() {
+                const selectedVendorId = this.value;
+                const selectedVendorName = this.options[this.selectedIndex].text;
+
+                if (selectedVendorId === originalVendorId) {
+                    tempVendorInput.value = '';
+                } else {
+                    tempVendorInput.value = selectedVendorName;
+                }
+            });
+        });
+    </script>
 @endsection

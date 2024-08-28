@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -77,5 +78,16 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'is_admin' => 1,
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        // Di sini kita tidak melakukan login otomatis
+        // return redirect ke halaman yang diinginkan setelah registrasi
+        return redirect($this->redirectPath())->with('status', 'User registered successfully!');
     }
 }
