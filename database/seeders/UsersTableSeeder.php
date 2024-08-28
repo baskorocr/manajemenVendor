@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'NPK' => 11230551,
-                'name' => 'Admin User',
+                'name' => 'baskorocr',
                 'email' => 'admin@example.com',
                 'email_verified_at' => now(),
                 'is_admin' => 1,

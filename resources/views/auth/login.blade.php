@@ -32,13 +32,13 @@
                                 <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
                                     adipisicing.</p>
                             </div>
-                            <form action="{{ route('login') }}" method="post">
+                            <form action="{{ route('login') }}" method="POST">
                                 @csrf
                                 <div class="form-group first">
-                                    <label for="NPK">NPK</label>
-                                    <input type="text" class="form-control @error('NPK') is-invalid @enderror"
-                                        id="NPK" name="NPK" required autocomplete="NPK" autofocus>
-                                    @error('NPK')
+                                    <label for="npk">NPK</label>
+                                    <input type="text" class="form-control @error('npk') is-invalid @enderror"
+                                        id="npk" name="npk" required autocomplete="npk" autofocus>
+                                    @error('npk')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
