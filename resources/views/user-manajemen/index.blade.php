@@ -5,17 +5,17 @@
         <!-- Page Title and Breadcrumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-themecolor">Pemilik</h3>
+                <h3 class="text-themecolor">User</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Table Pemilik</li>
+                    <li class="breadcrumb-item active">Table User</li>
                 </ol>
             </div>
             <div class="col-md-7 align-self-center text-end">
                 <!-- Button to Trigger Modal -->
                 <button type="button" class="btn waves-effect waves-light btn-info text-white mb-2" data-bs-toggle="modal"
-                    data-bs-target="#registerPemilikModal">
-                    Tambah Pemilik
+                    data-bs-target="#registerUserModal">
+                    Tambah User
                 </button>
             </div>
         </div>
@@ -25,8 +25,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Table Pemilik</h4>
-                        <h6 class="card-subtitle">Daftar semua pemilik</h6>
+                        <h4 class="card-title">Table User</h4>
+                        <h6 class="card-subtitle">Daftar semua User</h6>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -48,7 +48,7 @@
                                             <td>
                                                 <!-- Edit Button to Trigger Edit Modal -->
                                                 <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#editPemilikModal{{ $user->NPK }}">
+                                                    data-bs-target="#editUserModal{{ $user->NPK }}">
                                                     Edit
                                                 </button>
 
@@ -63,14 +63,14 @@
                                             </td>
                                         </tr>
 
-                                        <!-- Edit Pemilik Modal -->
-                                        <div class="modal fade" id="editPemilikModal{{ $user->NPK }}" tabindex="-1"
-                                            aria-labelledby="editPemilikModalLabel{{ $user->NPK }}" aria-hidden="true">
+                                        <!-- Edit User Modal -->
+                                        <div class="modal fade" id="editUserModal{{ $user->NPK }}" tabindex="-1"
+                                            aria-labelledby="editUserModalLabel{{ $user->NPK }}" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="editPemilikModalLabel{{ $user->NPK }}">Edit Pemilik</h5>
+                                                        <h5 class="modal-title" id="editUserModalLabel{{ $user->NPK }}">
+                                                            Edit User</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -80,24 +80,24 @@
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="mb-3">
-                                                                <label for="namePemilik{{ $user->NPK }}"
-                                                                    class="form-label">Nama Pemilik</label>
+                                                                <label for="nameUser{{ $user->NPK }}"
+                                                                    class="form-label">Nama User</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="namePemilik{{ $user->NPK }}" name="name"
+                                                                    id="nameUser{{ $user->NPK }}" name="name"
                                                                     value="{{ $user->name }}" required>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="emailPemilik{{ $user->NPK }}"
+                                                                <label for="emailUser{{ $user->NPK }}"
                                                                     class="form-label">Email</label>
                                                                 <input type="email" class="form-control"
-                                                                    id="emailPemilik{{ $user->NPK }}" name="email"
+                                                                    id="emailUser{{ $user->NPK }}" name="email"
                                                                     value="{{ $user->email }}" required>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="rolePemilik{{ $user->NPK }}"
+                                                                <label for="roleUser{{ $user->NPK }}"
                                                                     class="form-label">Role</label>
                                                                 <select class="form-select"
-                                                                    id="rolePemilik{{ $user->NPK }}" name="is_admin"
+                                                                    id="roleUser{{ $user->NPK }}" name="is_admin"
                                                                     required>
                                                                     <option value="1"
                                                                         {{ $user->is_admin ? 'selected' : '' }}>Admin
@@ -122,7 +122,7 @@
                                 </tbody>
                             </table>
                             @if ($users->isEmpty())
-                                <p class="text-center">Tidak ada pemilik yang tersedia.</p>
+                                <p class="text-center">Tidak ada User yang tersedia.</p>
                             @endif
                         </div>
                     </div>
@@ -131,13 +131,13 @@
         </div>
     </div>
 
-    <!-- Register Pemilik Modal -->
-    <div class="modal fade" id="registerPemilikModal" tabindex="-1" aria-labelledby="registerPemilikModalLabel"
+    <!-- Register User Modal -->
+    <div class="modal fade" id="registerUserModal" tabindex="-1" aria-labelledby="registerUserModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="registerPemilikModalLabel">Register Pemilik</h5>
+                    <h5 class="modal-title" id="registerUserModalLabel">Register User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
