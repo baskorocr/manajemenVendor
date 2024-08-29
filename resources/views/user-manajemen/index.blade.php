@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
+        <!-- Page Title and Breadcrumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
                 <h3 class="text-themecolor">Pemilik</h3>
@@ -11,11 +12,15 @@
                 </ol>
             </div>
             <div class="col-md-7 align-self-center text-end">
-                <a type="button" class="btn waves-effect waves-light btn-info text-white mb-2"
-                    href="{{ route('register') }}">Tambah Pemilik</a>
+                <!-- Button to Trigger Modal -->
+                <button type="button" class="btn waves-effect waves-light btn-info text-white mb-2" data-bs-toggle="modal"
+                    data-bs-target="#registerPemilikModal">
+                    Tambah Pemilik
+                </button>
             </div>
         </div>
 
+        <!-- Table to Display Users -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -41,11 +46,13 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->is_admin ? 'Admin' : 'User' }}</td>
                                             <td>
+                                                <!-- Edit Button to Trigger Edit Modal -->
                                                 <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
                                                     data-bs-target="#editPemilikModal{{ $user->NPK }}">
                                                     Edit
                                                 </button>
 
+                                                <!-- Delete Form -->
                                                 <form action="{{ route('user-manajemen.destroy', $user->NPK) }}"
                                                     method="POST" style="display:inline-block;" class="delete-form">
                                                     @csrf
@@ -63,8 +70,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
-                                                            id="editPemilikModalLabel{{ $user->NPK }}">Edit Pemilik
-                                                        </h5>
+                                                            id="editPemilikModalLabel{{ $user->NPK }}">Edit Pemilik</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -94,12 +100,10 @@
                                                                     id="rolePemilik{{ $user->NPK }}" name="is_admin"
                                                                     required>
                                                                     <option value="1"
-                                                                        {{ $user->is_admin ? 'selected' : '' }}>
-                                                                        Admin
+                                                                        {{ $user->is_admin ? 'selected' : '' }}>Admin
                                                                     </option>
                                                                     <option value="0"
-                                                                        {{ !$user->is_admin ? 'selected' : '' }}>
-                                                                        User
+                                                                        {{ !$user->is_admin ? 'selected' : '' }}>User
                                                                     </option>
                                                                 </select>
                                                             </div>
@@ -127,28 +131,92 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('button[data-confirm-delete="true"]').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const form = button.closest('form');
+    <!-- Register Pemilik Modal -->
+    <div class="modal fade" id="registerPemilikModal" tabindex="-1" aria-labelledby="registerPemilikModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPemilikModalLabel">Register Pemilik</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Register Form -->
+                    <form action="{{ route('register') }}" method="post">
+                        @csrf
+                        <div class="form-group first">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required
+                                autocomplete="name" autofocus>
+                        </div>
+                        <div class="form-group first">
+                            <label for="NPK">NPK</label>
+                            <input type="text" class="form-control @error('NPK') is-invalid @enderror" id="NPK"
+                                name="NPK" required autocomplete="NPK" autofocus>
+                            @error('NPK')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group first">
+                            <label for="role">Role</label>
+                            <select class="form-control @error('role') is-invalid @enderror" id="role"
+                                name="role" required>
+                                <option value="0">User</option>
+                                <option value="1">Admin</option>
+                            </select>
+                            @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group first">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                id="email" name="email" required autocomplete="email" autofocus>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group last">
+                            <label for="password">Password</label>
+                            <input type="password" id="password"
+                                class="form-control @error('password') is-invalid @enderror" name="password" required
+                                autocomplete="current-password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group last mb-4">
+                            <label for="password-confirm">Password Confirmation</label>
+                            <input type="password" id="password-confirm" class="form-control"
+                                name="password_confirmation" required autocomplete="new-password">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    Swal.fire({
-                        title: 'Anda yakin?',
-                        text: "Data yang dihapus tidak bisa dikembalikan!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, hapus!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();
-                        }
-                    });
-                });
+    <!-- Optional JavaScript to Handle Modal and Form Submission -->
+    <script>
+        // Confirmation for Delete Actions
+        document.querySelectorAll('[data-confirm-delete]').forEach(function(button) {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to delete this user?')) {
+                    button.closest('form').submit();
+                }
             });
         });
     </script>

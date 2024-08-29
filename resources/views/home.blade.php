@@ -74,7 +74,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Assets Data</h4>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
@@ -92,7 +92,6 @@
                                         <th>Jumlah (Unit)</th>
                                         <th>Spek Mesin (t)</th>
                                         <th>Pemilik</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -116,7 +115,6 @@
                                             <td>{{ $asset->jumlah }}</td>
                                             <td>{{ $asset->spek_mesin }}</td>
                                             <td>{{ $asset->owner_name }}</td>
-
                                         </tr>
                                     @empty
                                         <tr>
@@ -134,6 +132,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Ensure jQuery and other necessary scripts are loaded -->
