@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('parts', function (Blueprint $table) {
-            $table->integer('idPart')->primary(); // Primary key
+            $table->string('idPart')->primary(); // Primary key
             $table->string('part_name');
             $table->string('spek_material')->nullable();
             $table->string('spek_mesin')->nullable();
