@@ -109,11 +109,11 @@
                                             <td>{{ $asset->idPart }}</td>
                                             <td>{{ $asset->spek_material }}</td>
                                             <td>{{ $asset->asset_type_name }}</td>
-                                            <td>{{ $asset->process_name }}</td>
+                                            <td>{{ $asset->proses }}</td>
                                             <td>{{ $asset->no_assets }}</td>
                                             <td>{{ $asset->asset_type_name }}</td>
                                             <td>{{ $asset->jumlah }}</td>
-                                            <td>{{ $asset->spek_mesin }}</td>
+                                            <td>{{ $asset->machine }}</td>
                                             <td>{{ $asset->owner_name }}</td>
                                         </tr>
                                     @empty

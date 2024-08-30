@@ -30,7 +30,7 @@ class HomeController extends Controller
             ->join('vendors', 'assets.vendor_id', '=', 'vendors.id')
             ->join('projects', 'assets.project_id', '=', 'projects.id')
             ->join('asset_types', 'assets.asset_type_id', '=', 'asset_types.id')
-            
+
             ->join('pemiliks', 'assets.pemiliks_id', '=', 'pemiliks.id')
             ->join('photos', 'assets.photo_id', '=', 'photos.id')
             ->join('parts', 'assets.idPart', '=', 'parts.idPart')
@@ -41,14 +41,15 @@ class HomeController extends Controller
                 'customers.name as customer_name',
                 'projects.name_project as project_name',
                 'asset_types.name_type as asset_type_name',
-              
+                'assets.proses',
+                'assets.machine',
                 'pemiliks.name_pemilik as owner_name',
                 'photos.path as photo_url',
                 'parts.part_name',
                 'parts.idPart',
                 'parts.spek_material',
                 'assets.jumlah',
-                'parts.spek_mesin'
+
             )
             ->paginate(10); // Adjust the number as needed
 

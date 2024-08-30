@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->unsignedInteger('idUser');
             $table->string('StatusAwal');
             $table->string('StatusAkhir');
+            $table->string('bukti');
             $table->timestamps();
             $table->foreign('no_assets')->references('no_assets')->on('assets')->onDelete('cascade');
             $table->foreign('idUser')->references('NPK')->on('users')->onDelete('cascade');

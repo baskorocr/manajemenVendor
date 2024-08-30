@@ -24,6 +24,7 @@
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
+
         <div class="row">
             <!-- column -->
             <div class="col-12">
@@ -36,15 +37,17 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>no_aseets</th>
-                                        <th>idUser</th>
+                                        <th>No Assets</th>
+                                        <th>User ID</th>
                                         <th>User Name</th>
-                                        <th>statusAwal</th>
-                                        <th>statusAkhir</th>
-                                        <th>Action</th>
+                                        <th>Status Awal</th>
+                                        <th>Status Akhir</th>
+                                        <th>Gambar</th> <!-- Added for displaying image -->
+
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach ($riwayat as $rwyt)
                                         <tr>
                                             <td>{{ $rwyt->id }}</td>
@@ -53,28 +56,24 @@
                                             <td>{{ $rwyt->user->name ?? 'N/A' }}</td>
                                             <td>{{ $rwyt->StatusAwal }}</td>
                                             <td>{{ $rwyt->StatusAkhir }}</td>
+
+
                                             <td>
-                                                <!-- Edit Button -->
-
-
-                                                <!-- Delete Form -->
-                                                <form action="{{ route('riwayat.destroy', $rwyt->id) }}" method="POST"
-                                                    style="display:inline-block;" class="delete-form">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                        data-confirm-delete="true">Delete</button>
-                                                </form>
+                                                @if ($rwyt->bukti)
+                                                    <img src="{{ asset('storage/' . $rwyt->bukti) }}" alt="Gambar"
+                                                        class="img-thumbnail" width="100">
+                                                @else
+                                                    <p>No Image</p>
+                                                @endif
                                             </td>
-                                        </tr>
 
-                                        <!-- Edit Process Modal -->
+                                        </tr>
                                     @endforeach
                                 </tbody>
+                                @if ($riwayat->isEmpty())
+                                    <p class="text-center">No processes available.</p>
+                                @endif
                             </table>
-                            @if ($riwayat->isEmpty())
-                                <p class="text-center">No processes available.</p>
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -88,33 +87,5 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
 
-    <!-- Add Process Modal -->
-
-
     <!-- Inline JavaScript for confirmation dialog -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('button[data-confirm-delete="true"]').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const form = button.closest('form');
-
-                    Swal.fire({
-                        title: 'Are you sure?',
-                        text: "You won't be able to revert this!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 @endsection

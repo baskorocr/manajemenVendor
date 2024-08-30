@@ -19,6 +19,8 @@ class Asset extends Model
         'pemiliks_id',
         'photo_id',
         'idPart',
+        'proses',
+        'machine',
         'jumlah'
     ];
 

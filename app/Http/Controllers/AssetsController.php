@@ -48,7 +48,7 @@ class AssetsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'no_assets' => 'required|integer|digits_between:1,10',
+            'no_assets' => 'required|integer|digits_between:1,25',
             'vendor_id' => 'required|exists:vendors,id',
             'project_id' => 'required|exists:projects,id',
             'asset_type_id' => 'required|exists:asset_types,id',
@@ -57,6 +57,8 @@ class AssetsController extends Controller
             'photo_id' => 'required|exists:photos,id',
             'idPart' => 'required|exists:parts,idPart',
             'jumlah' => 'required|integer',
+            'proses' => 'required|string',
+            'machine' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -98,33 +100,38 @@ class AssetsController extends Controller
     // Handle the form submission and update the asset in the database
     public function update(Request $request, $no_assets)
     {
-
         // Validate the request data
         $validated = $request->validate([
             'vendor_id' => 'required|exists:vendors,id',
             'pemilik_id' => 'required|exists:pemiliks,id',
             'jumlah' => 'required|integer|min:1',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Validation for image
         ]);
 
         // Find the existing asset by its primary key
         $asset = Asset::where('no_assets', $no_assets)->firstOrFail();
 
-        // Update the asset with the validated data
+        // Handle the image upload for 'Riwayat'
+        $gambarPath = null;
+        if ($request->hasFile('gambar')) {
+            $gambarPath = $request->file('gambar')->store('riwayat', 'public');
+        }
+
+        // Update the asset with the validated data and create a 'Riwayat' entry if vendor changed
         if ($request->tempVendorAkhir != null) {
             Riwayat::create([
                 'no_assets' => $request->no_asset,
                 'idUser' => Auth::id(),
                 'StatusAwal' => $request->tempVendorAwal,
                 'StatusAkhir' => $request->tempVendorAkhir,
-
+                'bukti' => $gambarPath, // Store the image path in 'Riwayat'
             ]);
+
             $asset->update([
                 'vendor_id' => $validated['vendor_id'],
                 'pemiliks_id' => $validated['pemilik_id'],
                 'jumlah' => $validated['jumlah'],
             ]);
-
-
 
         } else {
             $asset->update([
@@ -134,10 +141,10 @@ class AssetsController extends Controller
             ]);
         }
 
-
         // Redirect the user with a success message
         return redirect()->route('assetsPart.index')->with('success', 'Asset updated successfully!');
     }
+
 
 
     /**

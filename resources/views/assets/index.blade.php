@@ -71,7 +71,7 @@
                                             <td>{{ $asset->part->idPart }}</td>
                                             <td>{{ $asset->part->spek_material }}</td> <!-- Display namePart -->
                                             <td>{{ $asset->assetType->name_type }}</td>
-                                            <td>{{ $asset->proses->proses_name }}</td>
+                                            <td>{{ $asset->proses }}</td>
 
 
 
@@ -86,7 +86,7 @@
                                             <td>{{ $asset->jumlah }}</td>
                                             <!-- Display namePart -->
 
-                                            <td>{{ $asset->part->spek_mesin }}</td> <!-- Display namePart -->
+                                            <td>{{ $asset->machine }}</td> <!-- Display namePart -->
                                             <td>{{ optional($asset->pemilik)->name_pemilik }}</td>
                                             <!-- Display gambar -->
                                             <td>

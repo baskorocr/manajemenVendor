@@ -86,6 +86,19 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="Prosess" class="form-label">Proses</label>
+                                <input type="text" class="form-control" id="proses" name="proses" required>
+
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="Machine" class="form-label">Machine</label>
+                                <input type="text" class="form-control" id="machine" name="machine" required>
+
+
+                            </div>
+
 
                             <div class="mb-3">
                                 <label for="jumlahInput" class="form-label">Jumlah</label>

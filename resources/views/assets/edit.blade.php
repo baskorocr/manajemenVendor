@@ -1,4 +1,3 @@
-<!-- resources/views/assets/edit.blade.php -->
 @extends('layouts.admin')
 
 @section('content')
@@ -18,7 +17,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Edit Asset</h4>
-                        <form action="{{ route('assetsPart.update', $asset->no_assets) }}" method="POST">
+                        <form action="{{ route('assetsPart.update', $asset->no_assets) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="no_asset" value="{{ $asset->no_assets }}">
@@ -38,9 +38,6 @@
                                 value="{{ $vendors->firstWhere('id', $asset->vendor_id)->name_vendor ?? '' }}">
                             <input type="hidden" id="tempVendorAkhir" class="form-control" readonly name="tempVendorAkhir">
 
-
-
-
                             <div class="mb-3">
                                 <label for="editPemilikSelect" class="form-label">Pemilik</label>
                                 <select id="editPemilikSelect" class="form-select" name="pemilik_id" required>
@@ -59,6 +56,20 @@
                                     value="{{ $asset->jumlah }}" required>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="editImageInput" class="form-label">Bukti Pemindahan</label>
+                                <input type="file" class="form-control" id="editImageInput" name="gambar">
+                            </div>
+
+                            @if ($asset->gambar)
+                                <div class="mb-3">
+                                    <label for="currentImage" class="form-label">Current Image</label>
+                                    <div>
+                                        <img src="{{ asset('storage/' . $asset->gambar) }}" alt="Current Image"
+                                            class="img-thumbnail" width="150">
+                                    </div>
+                                </div>
+                            @endif
 
                             <button type="submit" class="btn btn-primary">Update Asset</button>
                         </form>
