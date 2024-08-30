@@ -42,7 +42,7 @@
                                         <th>Part Name</th>
                                         <th>Material Spec</th>
 
-                                        <th>Machine Spec</th>
+
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -53,7 +53,7 @@
                                             <td>{{ $part->part_name }}</td>
                                             <td>{{ $part->spek_material }}</td>
 
-                                            <td>{{ $part->spek_mesin }}</td>
+
                                             <td>
                                                 <!-- Edit Button -->
                                                 <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
@@ -104,20 +104,8 @@
                                                                     name="spek_material" value="{{ $part->spek_material }}"
                                                                     required>
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <label for="jumlah{{ $part->idPart }}"
-                                                                    class="form-label">Quantity</label>
-                                                                <input type="number" class="form-control"
-                                                                    id="jumlah{{ $part->idPart }}" name="jumlah"
-                                                                    value="{{ $part->jumlah }}" required>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="spekMesin{{ $part->idPart }}"
-                                                                    class="form-label">Machine Spec</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="spekMesin{{ $part->idPart }}" name="spek_mesin"
-                                                                    value="{{ $part->spek_mesin }}" required>
-                                                            </div>
+
+
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
@@ -172,10 +160,7 @@
                             <input type="text" class="form-control" id="spekMaterial" name="spek_material" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="spekMesin" class="form-label">Machine Spec</label>
-                            <input type="text" class="form-control" id="spekMesin" name="spek_mesin" required>
-                        </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-success">Add Part</button>

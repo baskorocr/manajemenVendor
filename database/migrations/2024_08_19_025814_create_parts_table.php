@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('idPart')->primary(); // Primary key
             $table->string('part_name');
             $table->string('spek_material')->nullable();
-            $table->string('spek_mesin')->nullable();
+
             $table->timestamps();
         });
     }

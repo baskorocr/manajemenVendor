@@ -15,8 +15,7 @@ class Part extends Model
         'part_name',
         'spek_material',
 
-        'spek_mesin'
     ];
 
-    
+
 }
