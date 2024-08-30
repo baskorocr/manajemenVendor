@@ -154,7 +154,7 @@
                                 </li>
 
                                 <li><a class="dropdown-item" href="{{ route('vendors.index') }}">Vendor</a></li>
-                                <li><a class="dropdown-item" href="{{ route('proses.index') }}">Process</a></li>
+
 
 
                             </ul>

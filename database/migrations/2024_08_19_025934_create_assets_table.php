@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->foreignId('vendor_id')->constrained('vendors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('asset_type_id')->constrained('asset_types')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('proses_id')->constrained('proses')->onDelete('cascade')->onUpdate('cascade');
+            
             $table->foreignId('pemiliks_id')->constrained('pemiliks')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('photo_id')->constrained('photos')->onDelete('cascade')->onUpdate('cascade');
             $table->string('idPart');

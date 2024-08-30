@@ -16,7 +16,6 @@ class Asset extends Model
         'vendor_id',
         'project_id',
         'asset_type_id',
-        'proses_id',
         'pemiliks_id',
         'photo_id',
         'idPart',

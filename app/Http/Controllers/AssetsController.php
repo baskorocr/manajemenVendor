@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator; // Import Validator
 use App\Models\Vendor;
 use App\Models\Project;
 use App\Models\AssetType;
-use App\Models\Proses;
+
 use App\Models\Pemilik;
 use App\Models\Photo;
 use App\Models\Part;
@@ -22,7 +22,7 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        $assets = Asset::with(['vendor', 'project', 'project.customer', 'assetType', 'proses', 'pemilik', 'photo', 'part', 'assetType'])->get();
+        $assets = Asset::with(['vendor', 'project', 'project.customer', 'assetType', 'pemilik', 'photo', 'part', 'assetType'])->get();
         return view('assets.index', compact('assets'));
     }
 
@@ -34,12 +34,12 @@ class AssetsController extends Controller
         $vendors = Vendor::all();
         $projects = Project::all();
         $assetTypes = AssetType::all();
-        $proses = Proses::all();
+
         $pemiliks = Pemilik::all();
         $photos = Photo::all();
         $parts = Part::all();
 
-        return view('assets.create', compact('vendors', 'projects', 'assetTypes', 'proses', 'pemiliks', 'photos', 'parts'));
+        return view('assets.create', compact('vendors', 'projects', 'assetTypes', 'pemiliks', 'photos', 'parts'));
     }
 
     /**
@@ -52,7 +52,7 @@ class AssetsController extends Controller
             'vendor_id' => 'required|exists:vendors,id',
             'project_id' => 'required|exists:projects,id',
             'asset_type_id' => 'required|exists:asset_types,id',
-            'proses_id' => 'required|exists:proses,id',
+
             'pemiliks_id' => 'required|exists:pemiliks,id',
             'photo_id' => 'required|exists:photos,id',
             'idPart' => 'required|exists:parts,idPart',

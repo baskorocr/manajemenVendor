@@ -58,15 +58,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="mb-3">
-                                <label for="prosesSelect" class="form-label">Proses</label>
-                                <select id="prosesSelect" class="form-select" name="proses_id" required>
-                                    <option value="">Select a proses</option>
-                                    @foreach ($proses as $pr)
-                                        <option value="{{ $pr->id }}">{{ $pr->proses_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+
                             <div class="mb-3">
                                 <label for="pemiliksSelect" class="form-label">Pemilik</label>
                                 <select id="pemiliksSelect" class="form-select" name="pemiliks_id" required>

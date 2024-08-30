@@ -35,7 +35,6 @@ class PartController extends Controller
         $request->validate([
             'part_name' => 'required|string|max:255',
             'spek_material' => 'required|string|max:255',
-            
             'spek_mesin' => 'required|string|max:255',
         ]);
 
