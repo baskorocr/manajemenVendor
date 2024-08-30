@@ -48,7 +48,7 @@ class AssetsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'no_assets' => 'required|integer|digits_between:1,25',
+            'no_assets' => 'required|string|max:255',
             'vendor_id' => 'required|exists:vendors,id',
             'project_id' => 'required|exists:projects,id',
             'asset_type_id' => 'required|exists:asset_types,id',
