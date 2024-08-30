@@ -57,6 +57,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+
                                     @foreach ($assets as $asset)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
@@ -71,7 +73,7 @@
                                             <td>{{ $asset->part->idPart }}</td>
                                             <td>{{ $asset->part->spek_material }}</td> <!-- Display namePart -->
                                             <td>{{ $asset->assetType->name_type }}</td>
-                                            <td>{{ $asset->proses }}</td>
+                                            <td>{{ $asset->Proses }}</td>
 
 
 
