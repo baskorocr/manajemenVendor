@@ -10,7 +10,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('assets', function (Blueprint $table) {
-            $table->bigInteger('no_assets')->primary()->unsigned(); // Primary key auto-increment
+            $table->string('no_assets')->primary(); // Primary key auto-increment
             $table->foreignId('vendor_id')->constrained('vendors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('asset_type_id')->constrained('asset_types')->onDelete('cascade')->onUpdate('cascade');

@@ -22,7 +22,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="noAssetsInput" class="form-label">No Assets</label>
-                                <input type="number" class="form-control" id="noAssetsInput" name="no_assets" required>
+                                <input type="text" class="form-control" id="noAssetsInput" name="no_assets" required>
                                 @if ($errors->has('no_assets'))
                                     <span class="text-danger">Jumlah Digit No Assets Melebihi yang ditentukan</span>
                                 @endif

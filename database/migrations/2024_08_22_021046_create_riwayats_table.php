@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('riwayats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('no_assets');
+            $table->string('no_assets');
             $table->unsignedInteger('idUser');
             $table->string('StatusAwal');
             $table->string('StatusAkhir');
