@@ -46,6 +46,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
+Route::get('/assets/search', [AssetsController::class, 'search'])->name('assetsPart.search');
+
+
 // Route::group(['middleware' => ['auth', 'admin']], function () {
 //     Route::get('register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
 //     Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);

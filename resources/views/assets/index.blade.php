@@ -22,8 +22,13 @@
                     <div class="card-body">
                         <h4 class="card-title">Assets Table</h4>
                         <h6 class="card-subtitle">List of all assets</h6>
-                        <div class="table-responsive">
 
+                        <!-- Input Pencarian -->
+                        <div class="mb-3">
+                            <input type="text" id="search" class="form-control" placeholder="Search...">
+                        </div>
+
+                        <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -37,60 +42,33 @@
                                         <th>Spek Material</th>
                                         <th>Jenis Asset</th>
                                         <th>Nama Proses</th>
-
                                         <th>ID Asset</th>
-
-
-
-
                                         <th>Asset Type</th>
-
-
                                         <th>Jumlah (Unit)</th>
-
-
                                         <th>Spek Mesin (t)</th>
                                         <th>Pemilik</th>
-
-
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-
+                                <tbody id="table-body">
                                     @foreach ($assets as $asset)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $asset->project->customer->name }}</td>
                                             <td>{{ $asset->project->name_project }}</td>
                                             <td>{{ optional($asset->vendor)->name_vendor }}</td>
-                                            <td>
-                                                <img src="{{ asset('storage/' . $asset->photo->path) }}" alt="Gambar"
-                                                    style="width: 4rem;">
-                                            </td>
+                                            <td><img src="{{ asset('storage/' . $asset->photo->path) }}" alt="Gambar"
+                                                    style="width: 4rem;"></td>
                                             <td>{{ $asset->part->part_name }}</td>
                                             <td>{{ $asset->part->idPart }}</td>
-                                            <td>{{ $asset->part->spek_material }}</td> <!-- Display namePart -->
+                                            <td>{{ $asset->part->spek_material }}</td>
                                             <td>{{ $asset->assetType->name_type }}</td>
                                             <td>{{ $asset->Proses }}</td>
-
-
-
                                             <td>{{ $asset->no_assets }}</td>
-
-
-
-
                                             <td>{{ $asset->assetType->name_type }}</td>
-
-
                                             <td>{{ $asset->jumlah }}</td>
-                                            <!-- Display namePart -->
-
-                                            <td>{{ $asset->machine }}</td> <!-- Display namePart -->
+                                            <td>{{ $asset->machine }}</td>
                                             <td>{{ optional($asset->pemilik)->name_pemilik }}</td>
-                                            <!-- Display gambar -->
                                             <td>
                                                 <a href="{{ route('assetsPart.edit', $asset->no_assets) }}"
                                                     class="btn btn-warning btn-sm">Pindah Asset</a>
@@ -112,4 +90,29 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript/jQuery untuk AJAX Request -->
+    <script>
+        $(document).ready(function() {
+            $('#search').on('keyup', function() {
+                var query = $(this).val();
+                $.ajax({
+                    url: "{{ route('assetsPart.search') }}",
+                    type: "GET",
+                    data: {
+                        'search': query
+                    },
+                    success: function(data) {
+                        $('#table-body').html(data);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error occurred: " + textStatus + ", " + errorThrown);
+                        $('#table-body').html(
+                            '<tr><td colspan="15">An error occurred while fetching data. Please try again later.</td></tr>'
+                        );
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
