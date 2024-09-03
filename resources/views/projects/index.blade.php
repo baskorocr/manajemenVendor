@@ -55,7 +55,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
-                                                        data-confirm-delete="true">Hapus</button>
+                                                        data-confirm-delete="true">delete</button>
                                                 </form>
                                             </td>
                                         </tr>
