@@ -47,6 +47,7 @@
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+     @include('sweetalert::alert')
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->

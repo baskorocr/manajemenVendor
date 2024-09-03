@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -82,12 +83,25 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
+        try {
+            $this->validator($request->all())->validate();
 
-        $user = $this->create($request->all());
+            $user = $this->create($request->all());
 
-        // Di sini kita tidak melakukan login otomatis
-        // return redirect ke halaman yang diinginkan setelah registrasi
-        return redirect($this->redirectPath())->with('status', 'User registered successfully!');
+            // Success Alert
+            Alert::success('Success', 'User registered successfully!');
+
+            // Redirect to the desired page
+            return redirect($this->redirectPath());
+
+        } catch (\Exception $e) {
+            // Error Alert
+
+            
+            $p = Alert::error('Registration Failed', 'There was an error during registration: ' . $e->getMessage());
+           
+            // Redirect back with the error message
+            return redirect()->back()->withInput()->withErrors(['registration' => 'Registration failed!']);
+        }
     }
 }
