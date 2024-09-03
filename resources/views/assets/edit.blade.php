@@ -17,8 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Edit Asset</h4>
-                        <form action="{{ route('assetsPart.update', $asset->no_assets) }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('assetsPart.update', $asset->no_assets) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="no_asset" value="{{ $asset->no_assets }}">
@@ -27,23 +26,20 @@
                                 <label for="editVendorSelect" class="form-label">Vendor</label>
                                 <select id="editVendorSelect" class="form-select" name="vendor_id" required>
                                     @foreach ($vendors as $vendor)
-                                        <option value="{{ $vendor->id }}"
-                                            {{ $vendor->id == $asset->vendor_id ? 'selected' : '' }}>
+                                        <option value="{{ $vendor->id }}" {{ $vendor->id == $asset->vendor_id ? 'selected' : '' }}>
                                             {{ $vendor->name_vendor }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-                            <input type="hidden" readonly name="tempVendorAwal"
-                                value="{{ $vendors->firstWhere('id', $asset->vendor_id)->name_vendor ?? '' }}">
+                            <input type="hidden" readonly name="tempVendorAwal" value="{{ $vendors->firstWhere('id', $asset->vendor_id)->name_vendor ?? '' }}">
                             <input type="hidden" id="tempVendorAkhir" class="form-control" readonly name="tempVendorAkhir">
 
                             <div class="mb-3">
                                 <label for="editPemilikSelect" class="form-label">Pemilik</label>
                                 <select id="editPemilikSelect" class="form-select" name="pemilik_id" required>
                                     @foreach ($pemiliks as $pemilik)
-                                        <option value="{{ $pemilik->id }}"
-                                            {{ $pemilik->id == $asset->pemiliks_id ? 'selected' : '' }}>
+                                        <option value="{{ $pemilik->id }}" {{ $pemilik->id == $asset->pemiliks_id ? 'selected' : '' }}>
                                             {{ $pemilik->name_pemilik }}
                                         </option>
                                     @endforeach
@@ -52,8 +48,12 @@
 
                             <div class="mb-3">
                                 <label for="editJumlahInput" class="form-label">Jumlah</label>
-                                <input type="number" class="form-control" id="editJumlahInput" name="jumlah"
-                                    value="{{ $asset->jumlah }}" required>
+                                <input type="number" class="form-control" id="editJumlahInput" name="jumlah" value="{{ $asset->jumlah }}" required>
+                            </div>
+                            <!-- Date Input -->
+                            <div class="mb-3">
+                                <label for="editDateInput" class="form-label">Tanggal Pemindahan</label>
+                                <input type="date" class="form-control" id="editDateInput" name="tanggal_pemindahan" value="{{ $asset->tanggal_pemindahan ?? old('tanggal_pemindahan') }}" required>
                             </div>
 
                             <div class="mb-3">
@@ -65,11 +65,12 @@
                                 <div class="mb-3">
                                     <label for="currentImage" class="form-label">Current Image</label>
                                     <div>
-                                        <img src="{{ asset('storage/' . $asset->gambar) }}" alt="Current Image"
-                                            class="img-thumbnail" width="150">
+                                        <img src="{{ asset('storage/' . $asset->gambar) }}" alt="Current Image" class="img-thumbnail" width="150">
                                     </div>
                                 </div>
                             @endif
+
+                            
 
                             <button type="submit" class="btn btn-primary">Update Asset</button>
                         </form>

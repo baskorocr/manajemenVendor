@@ -35,6 +35,7 @@
                                         <th>Status Awal</th>
                                         <th>Status Akhir</th>
                                         <th>Bukti</th>
+                                        <th>Tanggal Pemindahan</th>
                                        
                                     </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                                                     <p>No Image</p>
                                                 @endif
                                             </td>
+                                            <td>{{ \Carbon\Carbon::parse($rwyt->TanggalPemindahan)->format('Y-m-d') }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -90,7 +92,9 @@
                                 var imageHtml = item.bukti ? 
                                 `<img src="{{ asset('storage') }}/${item.bukti}" alt="Gambar" class="img-thumbnail" width="100">` :
                                 `<p>No Image</p>`;
-                                $('#table-body').append(`
+                                 var dateOnly = item.TanggalPemindahan ? item.TanggalPemindahan.substring(0, 10) : 'N/A';
+                                    
+                                 $('#table-body').append(`
                                     <tr>
                                         <td>${item.id}</td>
                                         <td>${item.no_assets}</td>
@@ -100,6 +104,9 @@
                                         <td>${item.StatusAkhir}</td>
                                          <td>
                                                  ${imageHtml}
+                                        </td>
+                                        <td>
+                                            ${dateOnly}    
                                         </td>
                                        
                                     </tr>

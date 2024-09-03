@@ -98,7 +98,7 @@ class RegisterController extends Controller
             // Error Alert
 
             
-            $p = Alert::error('Registration Failed', 'There was an error during registration: ' . $e->getMessage());
+            Alert::error('Registration Failed', 'There was an error during registration: ' . $e->getMessage());
            
             // Redirect back with the error message
             return redirect()->back()->withInput()->withErrors(['registration' => 'Registration failed!']);

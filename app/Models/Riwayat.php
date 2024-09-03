@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Riwayat extends Model
 {
     use HasFactory;
-    protected $fillable = ['no_assets', 'idUser', 'StatusAwal', 'StatusAkhir', 'bukti'];
+    protected $fillable = ['no_assets', 'idUser', 'StatusAwal', 'StatusAkhir', 'bukti', 'TanggalPemindahan'];
 
     public function user()
     {
