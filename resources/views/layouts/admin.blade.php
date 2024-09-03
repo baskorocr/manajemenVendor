@@ -260,6 +260,8 @@
     <!--morris JavaScript -->
     <script src="{{ asset('./assets/node_modules/raphael/raphael-min.js') }}"></script>
 
+    <script src="{{ asset('./js/my.js') }}"></script>
+
     <!--c3 JavaScript -->
     <script src="{{ asset('./assets/node_modules/d3/d3.min.js') }}"></script>
     <script src="{{ asset('./assets/node_modules/c3-master/c3.min.js') }}"></script>
