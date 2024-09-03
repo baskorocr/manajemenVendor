@@ -59,15 +59,19 @@ class riwayatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function search(Request $request)
     {
-        $riwayat = Riwayat::findOrFail($id);
+        \Log::info('Search query:', ['query' => $request->input('search')]);
 
-        // Delete the Riwayat record
-        $riwayat->delete();
+        $query = $request->input('search');
+        $riwayat = Riwayat::where('no_assets', 'LIKE', "%{$query}%")->with('user')
+            ->get();
+            
 
-        // Redirect back to the index page with a success message
+        \Log::info('Search results:', ['results' => $riwayat]);
 
-        return redirect()->route('riwayat.index')->with('success', 'Proses berhasil dihapus');
+        return response()->json($riwayat);
     }
+
+
 }

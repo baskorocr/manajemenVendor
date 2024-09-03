@@ -44,68 +44,77 @@ class AssetsController extends Controller
                 ->orWhere('no_assets', 'LIKE', '%' . $searchTerm . '%')
                 ->get();
 
-            foreach ($assets as $key => $asset) {
-                $data .= '<tr>' .
-                    '<td>' . ($key + 1) . '</td>' .
-                    '<td>' . $asset->project->customer->name . '</td>' .
-                    '<td>' . $asset->project->name_project . '</td>' .
-                    '<td>' . optional($asset->vendor)->name_vendor . '</td>' .
-                    '<td><img src="' . asset('storage/' . $asset->photo->path) . '" alt="Gambar" style="width: 4rem;"></td>' .
-                    '<td>' . $asset->part->part_name . '</td>' .
-                    '<td>' . $asset->part->idPart . '</td>' .
-                    '<td>' . $asset->part->spek_material . '</td>' .
-                    '<td>' . $asset->assetType->name_type . '</td>' .
-                    '<td>' . $asset->Proses . '</td>' .
-                    '<td>' . $asset->no_assets . '</td>' .
-                    '<td>' . $asset->assetType->name_type . '</td>' .
-                    '<td>' . $asset->jumlah . '</td>' .
-                    '<td>' . $asset->machine . '</td>' .
-                    '<td>' . optional($asset->pemilik)->name_pemilik . '</td>' .
-                    '<td>' .
-                    '<a href="' . route('assetsPart.edit', $asset->no_assets) . '" class="btn btn-warning btn-sm">Pindah Asset</a>' .
-                    '<form action="' . route('assetsPart.destroy', $asset->no_assets) . '" method="POST" style="display:inline;">' .
-                    csrf_field() .
-                    method_field('DELETE') .
-                    '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')">Delete</button>' .
-                    '</form>' .
-                    '</td>' .
-                    '</tr>';
+            if ($assets->isEmpty()) {
+                $data .= '<tr><td colspan="16" class="text-center">No data found.</td></tr>';
+            } else {
+                foreach ($assets as $key => $asset) {
+                    $data .= '<tr>' .
+                        '<td>' . ($key + 1) . '</td>' .
+                        '<td>' . $asset->project->customer->name . '</td>' .
+                        '<td>' . $asset->project->name_project . '</td>' .
+                        '<td>' . optional($asset->vendor)->name_vendor . '</td>' .
+                        '<td><img src="' . asset('storage/' . $asset->photo->path) . '" alt="Gambar" style="width: 4rem;"></td>' .
+                        '<td>' . $asset->part->part_name . '</td>' .
+                        '<td>' . $asset->part->idPart . '</td>' .
+                        '<td>' . $asset->part->spek_material . '</td>' .
+                        '<td>' . $asset->assetType->name_type . '</td>' .
+                        '<td>' . $asset->Proses . '</td>' .
+                        '<td>' . $asset->no_assets . '</td>' .
+                        '<td>' . $asset->assetType->name_type . '</td>' .
+                        '<td>' . $asset->jumlah . '</td>' .
+                        '<td>' . $asset->machine . '</td>' .
+                        '<td>' . optional($asset->pemilik)->name_pemilik . '</td>' .
+                        '<td>' .
+                        '<a href="' . route('assetsPart.edit', $asset->no_assets) . '" class="btn btn-warning btn-sm">Pindah Asset</a>' .
+                        '<form action="' . route('assetsPart.destroy', $asset->no_assets) . '" method="POST" style="display:inline;">' .
+                        csrf_field() .
+                        method_field('DELETE') .
+                        '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')">Delete</button>' .
+                        '</form>' .
+                        '</td>' .
+                        '</tr>';
+                }
             }
         } else {
             $assets = Asset::with(['project.customer', 'vendor', 'photo', 'part', 'assetType', 'pemilik'])
                 ->paginate(10);
 
-            foreach ($assets as $key => $asset) {
-                $data .= '<tr>' .
-                    '<td>' . ($key + 1) . '</td>' .
-                    '<td>' . $asset->project->customer->name . '</td>' .
-                    '<td>' . $asset->project->name_project . '</td>' .
-                    '<td>' . optional($asset->vendor)->name_vendor . '</td>' .
-                    '<td><img src="' . asset('storage/' . $asset->photo->path) . '" alt="Gambar" style="width: 4rem;"></td>' .
-                    '<td>' . $asset->part->part_name . '</td>' .
-                    '<td>' . $asset->part->idPart . '</td>' .
-                    '<td>' . $asset->part->spek_material . '</td>' .
-                    '<td>' . $asset->assetType->name_type . '</td>' .
-                    '<td>' . $asset->Proses . '</td>' .
-                    '<td>' . $asset->no_assets . '</td>' .
-                    '<td>' . $asset->assetType->name_type . '</td>' .
-                    '<td>' . $asset->jumlah . '</td>' .
-                    '<td>' . $asset->machine . '</td>' .
-                    '<td>' . optional($asset->pemilik)->name_pemilik . '</td>' .
-                    '<td>' .
-                    '<a href="' . route('assetsPart.edit', $asset->no_assets) . '" class="btn btn-warning btn-sm">Pindah Asset</a>' .
-                    '<form action="' . route('assetsPart.destroy', $asset->no_assets) . '" method="POST" style="display:inline;">' .
-                    csrf_field() .
-                    method_field('DELETE') .
-                    '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')">Delete</button>' .
-                    '</form>' .
-                    '</td>' .
-                    '</tr>';
+            if ($assets->isEmpty()) {
+                $data .= '<tr><td colspan="16" class="text-center">No data found.</td></tr>';
+            } else {
+                foreach ($assets as $key => $asset) {
+                    $data .= '<tr>' .
+                        '<td>' . ($key + 1) . '</td>' .
+                        '<td>' . $asset->project->customer->name . '</td>' .
+                        '<td>' . $asset->project->name_project . '</td>' .
+                        '<td>' . optional($asset->vendor)->name_vendor . '</td>' .
+                        '<td><img src="' . asset('storage/' . $asset->photo->path) . '" alt="Gambar" style="width: 4rem;"></td>' .
+                        '<td>' . $asset->part->part_name . '</td>' .
+                        '<td>' . $asset->part->idPart . '</td>' .
+                        '<td>' . $asset->part->spek_material . '</td>' .
+                        '<td>' . $asset->assetType->name_type . '</td>' .
+                        '<td>' . $asset->Proses . '</td>' .
+                        '<td>' . $asset->no_assets . '</td>' .
+                        '<td>' . $asset->assetType->name_type . '</td>' .
+                        '<td>' . $asset->jumlah . '</td>' .
+                        '<td>' . $asset->machine . '</td>' .
+                        '<td>' . optional($asset->pemilik)->name_pemilik . '</td>' .
+                        '<td>' .
+                        '<a href="' . route('assetsPart.edit', $asset->no_assets) . '" class="btn btn-warning btn-sm">Pindah Asset</a>' .
+                        '<form action="' . route('assetsPart.destroy', $asset->no_assets) . '" method="POST" style="display:inline;">' .
+                        csrf_field() .
+                        method_field('DELETE') .
+                        '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')">Delete</button>' .
+                        '</form>' .
+                        '</td>' .
+                        '</tr>';
+                }
             }
         }
 
         return response()->json($data);
     }
+
 
     public function create()
     {

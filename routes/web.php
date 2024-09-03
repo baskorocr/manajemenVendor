@@ -12,6 +12,7 @@ use App\Http\Controllers\AssetsController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\riwayatController;
 use App\Http\Controllers\userManagementController;
+use App\Models\Riwayat;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/assets/search', [AssetsController::class, 'search'])->name('assetsPart.search');
+
+Route::get('/riwayats/search', [riwayatController::class, 'search'])->name('riwayats.search');
+
+
 
 
 // Route::group(['middleware' => ['auth', 'admin']], function () {
