@@ -14,7 +14,7 @@
         <div class="row d-flex mb-3 bg-white">
             <!-- Column for Greeting and Time -->
             <div class="col-lg-7 d-flex align-items-stretch mb-3 bg-white">
-                <div class="d-flex flex-column align-items-center justify-content-center w-100 p-3 ">
+                <div class="d-flex flex-column align-items-center justify-content-center w-100 p-3 text-center ">
                     <h2>Hello, {{ auth()->user()->name }} 🙌. Work spirit!</h2>
                     <h4 id="greeting" class="mt-3">Loading greeting...</h4>
                     <h1 id="current-time" class="mt-4">Loading time...</h1>

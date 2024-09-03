@@ -55,7 +55,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Are you sure you want to delete this project?');">Delete</button>
+                                                        data-confirm-delete="true">Hapus</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -159,3 +159,28 @@
         });
     });
 </script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('button[data-confirm-delete="true"]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const form = button.closest('form');
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
