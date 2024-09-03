@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Part extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id_number';
+
+    protected $primaryKey = 'idPart';
+    public $incrementing = false;
 
     protected $fillable = [
         'idPart',

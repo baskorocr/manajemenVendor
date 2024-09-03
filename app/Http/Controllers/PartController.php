@@ -63,18 +63,21 @@ class PartController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $id)
     {
         // Validate the request
-        $request->validate([
+       $validatedData = $request->validate([
             'part_name' => 'required|string|max:255',
             'spek_material' => 'required|string|max:255',
 
         ]);
 
         // Update the part
-        $part = Part::findOrFail($id);
-        $part->update($request->all());
+        $part = Part::where('idPart',$id)->firstOrFail();
+        $part->part_name = $validatedData['part_name'];
+        $part->spek_material = $validatedData['spek_material'];
+
+        $part->save();
 
         // Redirect to parts list with success message
         return redirect()->route('parts.index')->with('success', 'Part updated successfully.');

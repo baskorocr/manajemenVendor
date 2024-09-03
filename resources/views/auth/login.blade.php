@@ -29,8 +29,7 @@
                         <div class="col-md-12">
                             <div class="mb-4">
                                 <h3>Sign In</h3>
-                                <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
-                                    adipisicing.</p>
+                                <p class="mb-4">Selamat beraktivitas, selamat kerja dan semoga hari mu menyenangkan.</p>
                             </div>
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
