@@ -54,7 +54,9 @@ Route::get('/riwayats/search', [riwayatController::class, 'search'])->name('riwa
 
 
 
-// Route::group(['middleware' => ['auth', 'admin']], function () {
-//     Route::get('register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
-//     Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
-// });
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('register', function(){
+        return redirect('/user-manajemen');
+    })->name('register');
+    Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+});

@@ -164,6 +164,7 @@
                 .then(data => {
                     const [description, temperature] = data.split(' ');
                     document.getElementById('weather-text').innerText = description;
+                    console.log(data);
                     document.getElementById('temperature').innerText = `Temperature: ${temperature}`;
 
                     const weatherIcon = document.getElementById('weather-icon');
