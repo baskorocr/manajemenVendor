@@ -51,7 +51,7 @@
                                             <td>
                                                 @if ($rwyt->bukti)
                                                     <img src="{{ asset('storage/' . $rwyt->bukti) }}" alt="Gambar"
-                                                        class="img-thumbnail" width="100">
+                                                        class="img-thumbnail" width="100" height="50">
                                                 @else
                                                     <p>No Image</p>
                                                 @endif

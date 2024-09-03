@@ -88,7 +88,7 @@ class AssetsController extends Controller
                         '<td>' . $asset->project->customer->name . '</td>' .
                         '<td>' . $asset->project->name_project . '</td>' .
                         '<td>' . optional($asset->vendor)->name_vendor . '</td>' .
-                        '<td><img src="' . asset('storage/' . $asset->photo->path) . '" alt="Gambar" style="width: 4rem;"></td>' .
+                        '<td><img src="' . asset('storage/' . $asset->photo->path) . '" alt="Gambar" style="width: 4rem; width: 4rem; height: 2rem;"></td>' .
                         '<td>' . $asset->part->part_name . '</td>' .
                         '<td>' . $asset->part->idPart . '</td>' .
                         '<td>' . $asset->part->spek_material . '</td>' .
