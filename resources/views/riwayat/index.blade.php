@@ -28,7 +28,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        
                                         <th>No Assets</th>
                                         <th>ID User</th>
                                         <th>User Name</th>
@@ -42,7 +42,7 @@
                                 <tbody id="table-body">
                                     @foreach ($riwayat as $rwyt)
                                         <tr>
-                                            <td>{{ $rwyt->id }}</td>
+                                            
                                             <td>{{ $rwyt->no_assets }}</td>
                                             <td>{{ $rwyt->idUser }}</td>
                                             <td>{{ $rwyt->user->name ?? 'N/A' }}</td>
@@ -93,10 +93,10 @@
                                 `<img src="{{ asset('storage') }}/${item.bukti}" alt="Gambar" class="img-thumbnail" width="100">` :
                                 `<p>No Image</p>`;
                                  var dateOnly = item.TanggalPemindahan ? item.TanggalPemindahan.substring(0, 10) : 'N/A';
-                                    
+
                                  $('#table-body').append(`
                                     <tr>
-                                        <td>${item.id}</td>
+                                      
                                         <td>${item.no_assets}</td>
                                         <td>${item.idUser}</td>
                                         <td>${item.user ? item.user.name : 'N/A'}</td>
